@@ -35,7 +35,7 @@ fi
 
 if [[ -r /proc/loadavg ]]; then
   load_average="$(awk '{print $1}' /proc/loadavg)"
-  if awk -v load="$load_average" -v limit="$LOAD_THRESHOLD" 'BEGIN { exit !(load >= limit) }'; then
+  if awk -v current_load="$load_average" -v limit="$LOAD_THRESHOLD" 'BEGIN { exit !(current_load >= limit) }'; then
     "$SCRIPT_DIR/alert.sh" \
       "High system load" \
       "Current load average is ${load_average}, threshold is ${LOAD_THRESHOLD}."
@@ -52,4 +52,3 @@ if [[ "$status" -eq 0 ]]; then
 fi
 
 exit "$status"
-

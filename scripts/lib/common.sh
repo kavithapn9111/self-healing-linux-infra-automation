@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+COMMON_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$COMMON_SCRIPT_DIR/../.." && pwd)"
 
 CONFIG_FILE="${CONFIG_FILE:-$PROJECT_ROOT/config/monitor.conf}"
 SERVICES_FILE="${SERVICES_FILE:-$PROJECT_ROOT/config/services.conf}"
@@ -129,4 +129,3 @@ check_health() {
 }
 
 prepare_runtime_dirs
-
