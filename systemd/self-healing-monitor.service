@@ -1,0 +1,18 @@
+[Unit]
+Description=Self-Healing Linux Infrastructure Automation
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/self-healing-linux-infra-automation
+Environment=CONFIG_FILE=/opt/self-healing-linux-infra-automation/config/monitor.conf
+Environment=SERVICES_FILE=/opt/self-healing-linux-infra-automation/config/services.conf
+ExecStart=/opt/self-healing-linux-infra-automation/scripts/monitor_loop.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
